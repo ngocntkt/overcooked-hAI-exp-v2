@@ -173,3 +173,6 @@ participants.db
 
 #macOS  system files
 .DS_Store
+
+# datafile
+.csv

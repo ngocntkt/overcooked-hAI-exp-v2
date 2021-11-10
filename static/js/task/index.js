@@ -339,6 +339,7 @@ $(document).ready(async function () {
                         MAX_TIME : 30, //seconds
                         init_orders: ['onion'],
                         completion_callback: () => {
+                            psiTurk.saveData()
                             setTimeout(() => {
                                 $(".instructionsnav").show();
                             }, 1500);
@@ -426,7 +427,7 @@ $(document).ready(async function () {
                         init_orders: ['onion'],
                         always_serve: 'onion',
                         completion_callback: () => {
-                            // psiTurk.saveData()
+                            psiTurk.saveData()
                             setTimeout(() => {
                                 $(".instructionsnav").show();
                             }, 1500);

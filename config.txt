@@ -16,8 +16,9 @@ allow_repeats = false
 
 
 [Database Parameters]
-database_url = sqlite:///participants.db
+database_url = mysql://root:1234@127.0.0.1:3306/overcooked_db
 table_name = turkdemo
+data_column_name = datastring
 
 [Server Parameters]
 host = 0.0.0.0
