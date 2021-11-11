@@ -6,6 +6,7 @@ import Conditions from "./js/conditions.js"
 import GameServerIO from "./js/gameserver-io.js"
 import OvercookedSinglePlayerTask from "./js/overcooked-single";
 import getOvercookedPolicy from "./js/load_tf_model.js";
+import getOvercookedPolicy_2 from "./js/load_agent_model.js";
 
 import * as Overcooked from "overcooked"
 import 'regenerator-runtime/runtime'
@@ -85,7 +86,13 @@ $(document).ready(async function () {
       length: 12,
       charset: 'alphabetic'
     });
+    // Initalize psiTurk object
+    var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
+    window.psiTurk = psiTurk;
+
     // `condition` is passed by the psiturk server process
+    psiTurk.taskdata.set({condition: 0}); //set the first condition ??
+    console.log(condition);
     var condition_name = Conditions.condition_names[condition];
     console.log("Condition: " + condition_name);
     EXP.PLAYER_INDEX = Number(condition_name.split('-')[1]);
@@ -95,9 +102,6 @@ $(document).ready(async function () {
 
     var DEBUG = false;
 
-    // Initalize psiTurk object
-    var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
-    window.psiTurk = psiTurk;
 
     // All pages to be loaded
     var pages_to_preload = [
@@ -486,7 +490,9 @@ $(document).ready(async function () {
                 'pagename': 'exp/pageblock.html',
                 'pagefunc': function () {
                     let layout_name = main_trial_order[round_num];
-		    getOvercookedPolicy(EXP.MODEL_TYPE, layout_name, AGENT_INDEX).then(function(npc_policy) {
+            // //NGOC (Nov 11 2021): replace the DRL with a dummy (random) agent
+		    // getOvercookedPolicy(EXP.MODEL_TYPE, layout_name, AGENT_INDEX).then(function(npc_policy) {
+                getOvercookedPolicy_2(EXP.MODEL_TYPE, layout_name, AGENT_INDEX).then(function(npc_policy) {
                         $(".instructionsnav").hide();
 			let npc_policies = {};
 			npc_policies[AGENT_INDEX] = npc_policy;
