@@ -15,7 +15,7 @@ npm run build
 - Set up a virtual environment with [psiturk](https://psiturk.org/)
 (python 3.8+). E.g., with anaconda, run
 ```
-conda create -n psiturk_test_env python=3.8.9
+conda create -n psiturk_test_env python=3.8
 source activate psiturk_test_env
 pip install psiturk
 ```
